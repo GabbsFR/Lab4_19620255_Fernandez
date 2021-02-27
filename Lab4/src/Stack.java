@@ -144,5 +144,182 @@ public class Stack {
         }
     }
     //
+    // Métodos pedidos
+    // register
+    /*
+    Método que registra a un usuario con su nombre y contraseña
+    Dom: Stack stack, String name, String pass
+    Rec: Void
+    */
+    public void register(String name, String pass){
+        boolean flag = true;
+        for (User user : this.getUsers()) {
+            if (user.getName().equals(name)){
+                flag = false;
+                System.out.println("    fallo: Nombre de usuario ya registrado");
+            }
+        }
+        if (flag){
+            User usuario = new User(name,pass);
+            this.addUser(usuario);
+            System.out.println("    éxito: Usuari@ "+name+" resgistrad@ sin problemas");
+        }
+    }
+    // login
+    /*
+    Método que ingresa a un usuario con su nombre y contraseña si estas coinciden con algun usuario registrado
+    Dom: Stack stack, String name, String pass
+    Rec: Void
+    */
+    public boolean login(String name, String pass){
+        boolean flag = true;
+        for (User user : this.getUsers()) {
+            if (user.getName().equals(name)){
+                if (user.getPass().equals(pass)){
+                    flag = false;
+                    this.setActivo(user);
+                }
+            }
+        }
+        return flag;
+    }
+    // logout
+    /*
+    Método que cierra la sesión al usuario activo
+    Dom: Stack stack
+    Rec: Void
+    */
+    public void logout(){
+        if (!this.getActivo().getName().equals("")){
+            User vacio = new User("","");
+            this.setActivo(vacio);
+            System.out.println("    éxito: sesión cerrada sin problemas");
+        }else{
+            System.out.println("    fallo: no existe sesión iniciada");
+        }
+    }
+    // ask
+    /*
+    Método que ingresa una nueva pregunta
+    Dom: Stack stack, String titulo, String contenido, Etiqueta[] etiquetas
+    Rec: Void
+    */
+    public void ask(String titulo, String contenido, Etiqueta[] etiquetas){
+        int id = this.getPreguntas().length + 1;
+        Date fecha = Calendar.getInstance().getTime();
+        Pregunta pregunta = new Pregunta(id,etiquetas,titulo,contenido,fecha,this.getActivo());
+        this.addPregunta(pregunta);
+        System.out.println("    éxito: Pregunta ingresada sin problemas");
+    }
+    // answer
+    /*
+    Método que ingresa una nueva respuesta
+    Dom: Stack stack,Pregunta pregunta,String contenido
+    Rec: Void
+    */
+    public void answer(Stack stack,Pregunta pregunta,String contenido){
+        Date fecha = Calendar.getInstance().getTime();
+        Respuesta respuesta;
+        if (pregunta.getRespuestas() == null){
+            respuesta = new Respuesta(1, pregunta.getId(), stack.getActivo(), contenido, fecha);
+        }else {
+            respuesta = new Respuesta(pregunta.getRespuestas().length + 1, pregunta.getId(), stack.getActivo(), contenido, fecha);
+        }
+        stack.addRespuesta(respuesta);
+        pregunta.addRespuesta(respuesta);
+        System.out.println("    éxito: respuesta ingresada sin problemas");
+    }
+    // reward
+    /*
+    Método que retiene la recompensa ofrecida por el usuario y la pone en la recompensa de la pregunta
+    Dom: Stack stack,Pregunta pregunta,int recompensa
+    Rec: Void
+    */
+    public void reward(Pregunta pregunta,int recompensa){
+        if (this.getActivo().getReputacion() >= recompensa){
+            pregunta.agregarRecompensa(recompensa);
+            this.getActivo().setReputacion(this.getActivo().getReputacion() - recompensa);
+            System.out.println("    éxito: Recompensa ofrecida sin problemas");
+        }else{
+            System.out.println("    fallo: No se ofreció la recompensa, recompensa ofrecida es mayor que su reputación");
+        }
+    }
+    // accept
+    /*
+    Método que cierra la pregunta y entrega las recompensas al autor de la respuesta y entrega una pequeña recompensa al autor de la pregunta
+    Dom: Pregunta pregunta,Respuesta respuesta
+    Rec: Void
+    */
+    public void accept(Pregunta pregunta,Respuesta respuesta){
+        pregunta.setEstado("cerrada");
+        respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + pregunta.getRecompensa() + 15);
+        pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 2);
+        System.out.println("    éxito: Respuesta aceptada sin problemas");
+    }
+    // vote
+    /*
+    Método que permite votar una pregunta ya sea a favor o en contra y otorga las reputaciones
+    Dom: Pregunta pregunta,Respuesta respuesta
+    Rec: Void
+    */
+    public void vote(Pregunta pregunta, boolean tipo){
+        if (tipo){
+            pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 10);
 
+        }else{
+            pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() - 2);
+        }
+    }
+    /*
+    Método que permite votar una respuesta ya sea a favor o en contra y otorga las reputaciones
+    Dom: Pregunta pregunta,Respuesta respuesta
+    Rec: Void
+    */
+    public void vote(Respuesta respuesta, boolean tipo){
+        if (tipo){
+            respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + 10);
+        }else{
+            respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() - 2);
+            this.getActivo().setReputacion(this.getActivo().getReputacion() - 1);
+        }
+    }
+
+    public void inicial(){
+        User u1 = new User("Meredith","Grey");
+        User u2 = new User("Cristina","Yang");
+        User u3 = new User("Alex","Karev");
+        this.addUser(u1);
+        this.addUser(u2);
+        this.addUser(u3);
+
+        Etiqueta e1 = new Etiqueta("McDreamy","Relacionado con Dereck Shepard");
+        Etiqueta e2 = new Etiqueta("McSteamy","Relacionado con Mark Sloan");
+        Etiqueta e3 = new Etiqueta("Interns","Relacionado con l@s intern@s");
+        Etiqueta[] e = {e1,e2,e3};
+        this.addEtiqueta(e1);
+        this.addEtiqueta(e2);
+        this.addEtiqueta(e3);
+
+        Pregunta p1 = new Pregunta(1,e,"Episodio 1","¿En que casa esta Derek en el primer episodio?",Calendar.getInstance().getTime(),u2);
+        Pregunta p2 = new Pregunta(2,e,"General","¿De quien es hija Meredith?",Calendar.getInstance().getTime(),u2);
+        Pregunta p3 = new Pregunta(3,e,"Pregunta Episodio 1","¿Como se llaman las hermanas biológicas de Meredith?",Calendar.getInstance().getTime(),u1);
+        this.addPregunta(p1);
+        this.addPregunta(p2);
+        this.addPregunta(p3);
+
+        Respuesta r1 = new Respuesta(1,1,u3,"En casa de Meredith",Calendar.getInstance().getTime());
+        Respuesta r2 = new Respuesta(1,2,u3,"De Ellis Grey y Thatcher Grey",Calendar.getInstance().getTime());
+        Respuesta r3 = new Respuesta(1,3,u3,"Lexi",Calendar.getInstance().getTime());
+        Respuesta r4 = new Respuesta(2,3,u2,"Maggie",Calendar.getInstance().getTime());
+        Respuesta[] r = {r1};
+        Respuesta[] rr = {r2};
+        Respuesta[] rrr = {r3,r4};
+        p1.setRespuestas(r);
+        p2.setRespuestas(rr);
+        p3.setRespuestas(rrr);
+        this.addRespuesta(r1);
+        this.addRespuesta(r2);
+        this.addRespuesta(r3);
+        this.addRespuesta(r4);
+    }
 }

@@ -1,8 +1,10 @@
+/*
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args){
         //código
         Stack stack = new Stack();
@@ -129,11 +131,14 @@ public class Main {
             }
         }while(flag);
     }
+
+ */
     /*
     Método que muestra la lista de etiquetas y pregunta si toma la elegida por usuario o pide a usuario que cree una nueva
     Dom: Stack
     Rec: Etiqueta
     */
+/*
     public static Etiqueta etiqueta(Stack stack){
         Scanner scan = new Scanner(System.in);
         stack.mostrarEtiquetas();
@@ -152,11 +157,14 @@ public class Main {
             return stack.getEtiquetas()[et-1];
         }
     }
+
+ */
     /*
     Método que inicializa un stack con 3 usuarios, 3 preguntas,4 respuestas y 3 etiquetas
     Dom: Stack
     Rec: void
     */
+/*
     public static void inicial(Stack stack){
         User u1 = new User("Meredith","Grey");
         User u2 = new User("Cristina","Yang");
@@ -196,11 +204,15 @@ public class Main {
         stack.addRespuesta(r4);
 
     }
-    /*
+
+
+ */
+   /*
     Método que muestra el menu y retorna la elección del usuario
     Dom: Stack
     Rec: Int
     */
+/*
     public static int menu(Stack stack){
         int e;
         Scanner scan = new Scanner(System.in);
@@ -224,147 +236,6 @@ public class Main {
         }
         return e;
     }
-    // Métodos pedidos
-    // register
-    /*
-    Método que registra a un usuario con su nombre y contraseña
-    Dom: Stack stack, String name, String pass
-    Rec: Void
-    */
-    public static void register(Stack stack, String name, String pass){
-        boolean flag = true;
-        for (User user : stack.getUsers()) {
-            if (user.getName().equals(name)){
-                flag = false;
-                System.out.println("    fallo: Nombre de usuario ya registrado");
-            }
-        }
-        if (flag){
-            User usuario = new User(name,pass);
-            stack.addUser(usuario);
-            System.out.println("    éxito: Usuari@ "+name+" resgistrad@ sin problemas");
-        }
-    }
-    // login
-    /*
-    Método que ingresa a un usuario con su nombre y contraseña si estas coinciden con algun usuario registrado
-    Dom: Stack stack, String name, String pass
-    Rec: Void
-    */
-    public static void login(Stack stack,String name, String pass){
-        boolean flag = true;
-        for (User user : stack.getUsers()) {
-            if (user.getName().equals(name)){
-                if (user.getPass().equals(pass)){
-                    flag = false;
-                    stack.setActivo(user);
-                }
-            }
-        }
-        if(flag){
-            System.out.println("    fallo: nombre de usuario o contraseña incorrecta");
-        }else{
-            System.out.println("    éxito: usuario ingresado sin problemas");
-        }
-    }
-    // logout
-    /*
-    Método que cierra la sesión al usuario activo
-    Dom: Stack stack
-    Rec: Void
-    */
-    public static void logout(Stack stack){
-        if (!stack.getActivo().getName().equals("")){
-            User vacio = new User("","");
-            stack.setActivo(vacio);
-            System.out.println("    éxito: sesión cerrada sin problemas");
-        }else{
-            System.out.println("    fallo: no existe sesión iniciada");
-        }
-    }
-    // ask
-    /*
-    Método que ingresa una nueva pregunta
-    Dom: Stack stack, String titulo, String contenido, Etiqueta[] etiquetas
-    Rec: Void
-    */
-    public static void ask(Stack stack,String titulo, String contenido, Etiqueta[] etiquetas){
-        int id = stack.getPreguntas().length + 1;
-        Date fecha = Calendar.getInstance().getTime();
-        Pregunta pregunta = new Pregunta(id,etiquetas,titulo,contenido,fecha,stack.getActivo());
-        stack.addPregunta(pregunta);
-        System.out.println("    éxito: Pregunta ingresada sin problemas");
-    }
-    // answer
-    /*
-    Método que ingresa una nueva respuesta
-    Dom: Stack stack,Pregunta pregunta,String contenido
-    Rec: Void
-    */
-    public static void answer(Stack stack,Pregunta pregunta,String contenido){
-        Date fecha = Calendar.getInstance().getTime();
-        Respuesta respuesta;
-        if (pregunta.getRespuestas() == null){
-            respuesta = new Respuesta(1, pregunta.getId(), stack.getActivo(), contenido, fecha);
-        }else {
-            respuesta = new Respuesta(pregunta.getRespuestas().length + 1, pregunta.getId(), stack.getActivo(), contenido, fecha);
-        }
-        stack.addRespuesta(respuesta);
-        pregunta.addRespuesta(respuesta);
-        System.out.println("    éxito: respuesta ingresada sin problemas");
-    }
-    // reward
-    /*
-    Método que retiene la recompensa ofrecida por el usuario y la pone en la recompensa de la pregunta
-    Dom: Stack stack,Pregunta pregunta,int recompensa
-    Rec: Void
-    */
-    public static void reward(Stack stack,Pregunta pregunta,int recompensa){
-        if (stack.getActivo().getReputacion() >= recompensa){
-            pregunta.agregarRecompensa(recompensa);
-            stack.getActivo().setReputacion(stack.getActivo().getReputacion() - recompensa);
-            System.out.println("    éxito: Recompensa ofrecida sin problemas");
-        }else{
-            System.out.println("    fallo: No se ofreció la recompensa, recompensa ofrecida es mayor que su reputación");
-        }
-    }
-    // accept
-    /*
-    Método que cierra la pregunta y entrega las recompensas al autor de la respuesta y entrega una pequeña recompensa al autor de la pregunta
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
-    public static void accept(Pregunta pregunta,Respuesta respuesta){
-        pregunta.setEstado("cerrada");
-        respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + pregunta.getRecompensa() + 15);
-        pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 2);
-        System.out.println("    éxito: Respuesta aceptada sin problemas");
-    }
-    // vote
-    /*
-    Método que permite votar una pregunta ya sea a favor o en contra y otorga las reputaciones
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
-    public static void vote(Stack stack, Pregunta pregunta, boolean tipo){
-        if (tipo){
-            pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 10);
 
-        }else{
-            pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() - 2);
-        }
-    }
-    /*
-    Método que permite votar una respuesta ya sea a favor o en contra y otorga las reputaciones
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
-    public static void vote(Stack stack, Respuesta respuesta, boolean tipo){
-        if (tipo){
-            respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + 10);
-        }else{
-            respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() - 2);
-            stack.getActivo().setReputacion(stack.getActivo().getReputacion() - 1);
-        }
-    }
 }
+*/
