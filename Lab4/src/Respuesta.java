@@ -6,12 +6,17 @@ public class Respuesta {
     private User autor;
     private String contenido;
     private Date fecha;
+    private int vf;
+    private int vc;
+
     Respuesta(int id, int idPregunta, User autor, String contenido, Date fecha){
         this.id = id;
         this.idPregunta = idPregunta;
         this.autor = autor;
         this.contenido = contenido;
         this.fecha = fecha;
+        this.vf = 0;
+        this.vc = 0;
     }
     // Setters y Getters de atributos
     public int getId() {
@@ -44,9 +49,24 @@ public class Respuesta {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    public int getVf() {
+        return vf;
+    }
+    public void setVf(int vf) {
+        this.vf = vf;
+    }
+    public int getVc() {
+        return vc;
+    }
+    public void setVc(int vc) {
+        this.vc = vc;
+    }
 
     public String mostrarRespuesta(){
-        String r = this.id + "\n" + this.getContenido() + "\n"+
-                "    Autor: " + this.autor + "    fecha: " + this.fecha + this.;
+        String r = this.id + "\n" + this.getContenido() +
+                "\n    Votos a favor: "+ this.vf +
+                "\n    Votos en contra: "+ this.vc +
+                "\n    Autor: " + this.autor.getName() + "\n    fecha: " + this.fecha;
+        return r;
     }
 }

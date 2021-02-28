@@ -69,7 +69,7 @@ public class Principal extends JFrame{
                 }else{
                     dispose();
                     int id = Character.getNumericValue(textPane1.getText().charAt(0));
-                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id);
+                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id-1);
                     frame.setVisible(true);
                 }
             }

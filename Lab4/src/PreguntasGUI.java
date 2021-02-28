@@ -1,4 +1,6 @@
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class PreguntasGUI extends JFrame {
     private JLabel user;
@@ -15,15 +17,21 @@ public class PreguntasGUI extends JFrame {
         this.setContentPane((preguntaG));
         this.setSize(1450,850);
         user.setBounds(-50,20,30,20);
-        Pregunta p = stack.getPreguntas()[id -1];
+        Pregunta p = stack.getPreguntas()[id];
         user.setText(stack.getActivo().getName());
-        contenido.setText(stack.getPreguntas()[id].getContenido());
+        contenido.setText(stack.getPreguntas()[id].mostrarPregunta());
 
         DefaultListModel respuestas = new DefaultListModel();
         for (Respuesta respuesta : p.getRespuestas()) {
-            respuestas.addElement(respuesta.getId()+": "+pregunta.getContenido());
+            respuestas.addElement(respuesta.getId()+": "+respuesta.getContenido());
         }
         list1.setModel(respuestas);
 
+        votarRespuestaOPreguntaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
     }
 }

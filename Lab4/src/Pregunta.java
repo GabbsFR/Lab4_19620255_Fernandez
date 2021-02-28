@@ -9,6 +9,9 @@ public class Pregunta {
     private Date fecha;
     private User autor;
     private String estado;
+    private int vf;
+    private int vc;
+
     private int recompensa;
     //constructor
     Pregunta(int id, Etiqueta [] etiquetas, String titulo, String contenido, Date fecha, User autor){
@@ -20,6 +23,8 @@ public class Pregunta {
         this.autor = autor;
         this.estado = "abierta";
         this.recompensa = 0;
+        this.vf = 0;
+        this.vc = 0;
     }
     // Setters y Getters de atributos
     public int getId() {
@@ -76,9 +81,21 @@ public class Pregunta {
     public void setRecompensa(int recompensa) {
         this.recompensa = recompensa;
     }
+    public int getVc() {
+        return vc;
+    }
+    public void setVc(int vc) {
+        this.vc = vc;
+    }
+    public int getVf() {
+        return vf;
+    }
+    public void setVf(int vf) {
+        this.vf = vf;
+    }
     /*
-    Métodos
-     */
+        Métodos
+         */
     /*
     método que permite agregar una respuesta al array de respuestas
     dom : la respuesta que se quiere agregar
@@ -108,20 +125,14 @@ public class Pregunta {
     /*
     método que permite mostrar las respuestas a la pregunta
      */
-    public String stringRespuestas(){
-        String r = "";
-        for (int i = 0; i < respuestas.length; i++) {
-            r = r+"        "+respuestas[i].getId()+" : "+respuestas[i].getContenido();
-        }
-        return r;
-    }
+
     public String mostrarPregunta(){
-        String p = this.getId() + ": "+ this.getContenido() +
-                "\n    Estado: "+this.getEstado()+" recompensa: "+this.getRecompensa()+
-                "\n    Respuestas: ";
-        if (this.getRespuestas() != null){
-            p = p + this.stringRespuestas();
-        }
-        return  p+"\n";
+        String p = this.id + ": "+ this.contenido +
+                "\n    Autor/a: " + this.autor.getName() +
+                "\n    Estado: " + this.estado +
+                "\n    Votos a favor: " + this.vf +
+                "\n    Votos en contra: " + this.vc +
+                "\n    Recompensa: " + this.recompensa;
+        return  p;
     }
 }
