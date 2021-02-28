@@ -44,4 +44,9 @@ public class Respuesta {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    public String mostrarRespuesta(){
+        String r = this.id + "\n" + this.getContenido() + "\n"+
+                "    Autor: " + this.autor + "    fecha: " + this.fecha + this.;
+    }
 }

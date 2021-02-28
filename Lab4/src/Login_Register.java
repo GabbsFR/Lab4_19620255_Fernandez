@@ -19,7 +19,7 @@ public class Login_Register extends JFrame{
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((inicio));
-        this.pack();
+        this.setSize(450,450);
         ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

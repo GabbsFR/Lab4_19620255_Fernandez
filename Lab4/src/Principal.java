@@ -17,7 +17,7 @@ public class Principal extends JFrame{
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((principal));
-        this.pack();
+        this.setSize(1450,850);
         if (stack.getActivo().getName().equals("")){
             button1.setText("Ingresar o Registrarse");
         }else{
@@ -65,9 +65,12 @@ public class Principal extends JFrame{
                 if(textPane1.getText().equals("")){
                     success.setText("Debe seleccionar una pregunta primero");
                 }else if(stack.getActivo().getName().equals("")){
-
-                }else{
                     success.setText("Debe iniciar sesión antes de realizar cualquier acción");
+                }else{
+                    dispose();
+                    int id = Character.getNumericValue(textPane1.getText().charAt(0));
+                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id);
+                    frame.setVisible(true);
                 }
             }
         });
