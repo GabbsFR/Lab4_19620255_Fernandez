@@ -115,18 +115,6 @@ public class Stack {
             System.out.println(e);
         }
     }
-    // mostrar preguntas
-    public void mostrarPreguntas(){
-        System.out.println("Preguntas: ");
-        for (int i = 0; i < preguntas.length; i++) {
-            System.out.println(preguntas[i].getId() + ": "+ preguntas[i].getContenido());
-            System.out.println("    Estado: "+preguntas[i].getEstado()+" recompensa: "+preguntas[i].getRecompensa());
-            System.out.println("    Respuestas: ");
-            if (preguntas[i].getRespuestas() != null){
-                preguntas[i].mostrarRespuestas();
-            }
-        }
-    }
     // mostrar preguntas de usuario y que esten abiertas
     public void mostrarParaAccept(){
         System.out.println("Preguntas: ");
@@ -151,7 +139,7 @@ public class Stack {
     Dom: Stack stack, String name, String pass
     Rec: Void
     */
-    public void register(String name, String pass){
+    public boolean register(String name, String pass){
         boolean flag = true;
         for (User user : this.getUsers()) {
             if (user.getName().equals(name)){
@@ -162,8 +150,8 @@ public class Stack {
         if (flag){
             User usuario = new User(name,pass);
             this.addUser(usuario);
-            System.out.println("    éxito: Usuari@ "+name+" resgistrad@ sin problemas");
         }
+        return flag;
     }
     // login
     /*

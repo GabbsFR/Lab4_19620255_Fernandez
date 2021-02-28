@@ -108,11 +108,20 @@ public class Pregunta {
     /*
     método que permite mostrar las respuestas a la pregunta
      */
-    public void mostrarRespuestas(){
-        System.out.println("    Respuestas: ");
+    public String stringRespuestas(){
+        String r = "";
         for (int i = 0; i < respuestas.length; i++) {
-            System.out.println("        "+respuestas[i].getId()+" : "+respuestas[i].getContenido());
+            r = r+"        "+respuestas[i].getId()+" : "+respuestas[i].getContenido();
         }
+        return r;
     }
-
+    public String mostrarPregunta(){
+        String p = this.getId() + ": "+ this.getContenido() +
+                "\n    Estado: "+this.getEstado()+" recompensa: "+this.getRecompensa()+
+                "\n    Respuestas: ";
+        if (this.getRespuestas() != null){
+            p = p + this.stringRespuestas();
+        }
+        return  p+"\n";
+    }
 }

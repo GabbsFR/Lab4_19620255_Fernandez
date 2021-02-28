@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 
-public class StackOverflow extends JFrame{
+public class Login_Register extends JFrame{
     private JPanel inicio;
     private JTextField textUser;
     private JPasswordField textPass;
@@ -14,7 +14,7 @@ public class StackOverflow extends JFrame{
     private JButton registrarseButton;
     private JLabel success;
 
-    public StackOverflow(String title, Stack stack) {
+    public Login_Register(String title, Stack stack) {
         super(title);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +30,10 @@ public class StackOverflow extends JFrame{
                 if (flag){
                     success.setText("Usuario y/o contraseña incorrectas");
                 }else{
+                    dispose();
+                    stack.login(user,pass);
+                    JFrame frame = new Principal("Principal - StackOverflow GFR",stack);
+                    frame.setVisible(true);
 
                 }
             }
@@ -37,15 +41,19 @@ public class StackOverflow extends JFrame{
         registrarseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = new Register("Registro StackOverflow Gabriela Fernández",stack);
-                frame.setVisible(true);
+                String user = textUser.getText();
+                String pass = textPass.getText();
+                boolean flag = stack.register(user,pass);
+
+                if (flag){
+                    dispose();
+                    stack.login(user,pass);
+                    JFrame frame = new Principal("Principal - StackOverflow GFR",stack);
+                    frame.setVisible(true);
+                }else{
+                    success.setText("Usuario ya registrado, elija otro nombre de usuario");
+                }
             }
         });
-    }
-    public static void main(String[] args) {
-        Stack stack = new Stack();
-        stack.inicial();
-        JFrame frame = new StackOverflow("StackOverflow Gabriela Fernández", stack);
-        frame.setVisible(true);
     }
 }
