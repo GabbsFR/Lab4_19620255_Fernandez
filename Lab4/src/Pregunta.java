@@ -39,35 +39,14 @@ public class Pregunta {
     public void setRespuestas(Respuesta[] respuestas) {
         this.respuestas = respuestas;
     }
-    public Etiqueta[] getEtiquetas() {
-        return etiquetas;
-    }
-    public void setEtiquetas(Etiqueta[] etiquetas) {
-        this.etiquetas = etiquetas;
-    }
     public String getTitulo() {
         return titulo;
-    }
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
     }
     public String getContenido() {
         return contenido;
     }
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-    public Date getFecha() {
-        return fecha;
-    }
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
     public User getAutor() {
         return autor;
-    }
-    public void setAutor(User autor) {
-        this.autor = autor;
     }
     public String getEstado() {
         return estado;
@@ -77,9 +56,6 @@ public class Pregunta {
     }
     public int getRecompensa() {
         return recompensa;
-    }
-    public void setRecompensa(int recompensa) {
-        this.recompensa = recompensa;
     }
     public int getVc() {
         return vc;
@@ -123,9 +99,8 @@ public class Pregunta {
         this.recompensa = this.recompensa + n;
     }
     /*
-    método que permite mostrar las respuestas a la pregunta
+    método que entrega un String con la información de la pregunta
      */
-
     public String mostrarPregunta(){
         String p = this.id + ": "+ this.contenido +
                 "\n    Autor/a: " + this.autor.getName() +

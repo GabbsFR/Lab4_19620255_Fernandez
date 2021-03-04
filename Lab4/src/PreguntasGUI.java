@@ -1,3 +1,7 @@
+/*
+Ventana que muestra una pregunta con sus respuestas y permite que se agreguen respuestas,
+se vote, se acepte, se agregue recompensa,etc.
+ */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,7 +13,6 @@ public class PreguntasGUI extends JFrame {
     private JButton votarRespuestaAFavorButton;
     private JButton agregarRecompensaButton;
     private JPanel preguntaG;
-    private JLabel contenido;
     private JButton volver;
     private JButton votarPreguntaEnContraButton;
     private JTextArea respuestaSeleccionada;
@@ -34,12 +37,14 @@ public class PreguntasGUI extends JFrame {
         infoPregunta.setText(p.mostrarPregunta());
         respuestaSeleccionada.setText("");
 
+        // oculta las opciones que son solo para preguntas abiertas
         if (p.getEstado().equals("cerrada")){
             agregarRecompensaButton.setVisible(false);
             spinner1.setVisible(false);
             aceptarRespuestaButton.setVisible(false);
         }
 
+        // oculta la opción que es solo para el/la autor/a de la pregunta
         if (!p.getAutor().getName().equals(stack.getActivo().getName())){
             aceptarRespuestaButton.setVisible(false);
         }
@@ -50,12 +55,14 @@ public class PreguntasGUI extends JFrame {
         }
         list1.setModel(respuestas);
 
+        // cuando se selecciona una respuesta de la lista de respuestas, pone la información de la misma en un recuadro en la ventana
         list1.getSelectionModel().addListSelectionListener(e -> {
             success.setText("");
             int idRespuesta = list1.getSelectedIndex();
             respuestaSeleccionada.setText(idRespuesta + stack.getPreguntas()[id].getRespuestas()[idRespuesta].mostrarRespuesta());
         });
 
+        // permite volver a la ventana principal
         volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,7 +72,7 @@ public class PreguntasGUI extends JFrame {
             }
         });
 
-
+        // permite agregar una respuesta siempre y cuando se rellene el campo de texto
         agregarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,11 +81,13 @@ public class PreguntasGUI extends JFrame {
                 }else{
                     stack.answer(p,contenidoRespuestaIngresada.getText());
                     dispose();
-                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id);
+                    JFrame frame = new PreguntasGUI("Pregunta - StackOverflow GFR",stack,id);
                     frame.setVisible(true);
                 }
             }
         });
+
+        // permite agregar una recompensa siempre que se cumpla con las condiciones
         agregarRecompensaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -88,11 +97,13 @@ public class PreguntasGUI extends JFrame {
                 }else {
                     stack.reward(p,value);
                     dispose();
-                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id);
+                    JFrame frame = new PreguntasGUI("Pregunta - StackOverflow GFR",stack,id);
                     frame.setVisible(true);
                 }
             }
         });
+
+        // permite aceptar una respuesta (esta opcion le saldra dispnible solo al autor de la pregunta)
         aceptarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -104,11 +115,13 @@ public class PreguntasGUI extends JFrame {
                     Respuesta r = p.getRespuestas()[idR];
                     stack.accept(p,r);
                     dispose();
-                    JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id);
+                    JFrame frame = new PreguntasGUI("Pregunta - StackOverflow GFR",stack,id);
                     frame.setVisible(true);
                 }
             }
         });
+
+        // Permite votar a favor de la pregunta
         votarPreguntaAFavorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -122,6 +135,8 @@ public class PreguntasGUI extends JFrame {
                 }
             }
         });
+
+        // Permite votar en contra de la pregunta
         votarPreguntaEnContraButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -136,6 +151,7 @@ public class PreguntasGUI extends JFrame {
             }
         });
 
+        // Permite votar a favor de una respuesta siempre que se haya seleccionado alguna
         votarRespuestaAFavorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -151,6 +167,7 @@ public class PreguntasGUI extends JFrame {
                 }
             }
         });
+        // Permite votar en contra de una respuesta siempre que se haya seleccionado alguna
         votarRespuestaEnContraButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

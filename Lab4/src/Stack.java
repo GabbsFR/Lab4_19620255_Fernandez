@@ -19,20 +19,8 @@ public class Stack {
     public Pregunta[] getPreguntas() {
         return preguntas;
     }
-    public void setPreguntas(Pregunta[] preguntas) {
-        this.preguntas = preguntas;
-    }
-    public Respuesta[] getRespuestas() {
-        return respuestas;
-    }
-    public void setRespuestas(Respuesta[] respuestas) {
-        this.respuestas = respuestas;
-    }
     public User[] getUsers() {
         return users;
-    }
-    public void setUsers(User[] users) {
-        this.users = users;
     }
     public User getActivo() {
         return activo;
@@ -42,9 +30,6 @@ public class Stack {
     }
     public Etiqueta[] getEtiquetas() {
         return etiquetas;
-    }
-    public void setEtiquetas(Etiqueta[] etiquetas) {
-        this.etiquetas = etiquetas;
     }
 
     // Métodos
@@ -105,31 +90,6 @@ public class Stack {
         this.etiquetas[auxE.length] = etiqueta;
     }
 
-    // mostrar Etiquetas
-    public void mostrarEtiquetas(){
-        System.out.println("Etiquetas: ");
-        String e;
-        for (int i = 0; i < etiquetas.length; i++) {
-            e = String.valueOf(i+1) + ".- "+ etiquetas[i].getNombre() + " : " + etiquetas[i].getDescripcion();
-            System.out.println(e);
-        }
-    }
-    // mostrar preguntas de usuario y que esten abiertas
-    public void mostrarParaAccept(){
-        System.out.println("Preguntas: ");
-        for (int i = 0; i < preguntas.length; i++) {
-            if (preguntas[i].getAutor().getName().equals(activo.getName()) && preguntas[i].getEstado().equals("abierta")) {
-                System.out.println(preguntas[i].getId() + ": " + preguntas[i].getContenido());
-                System.out.println("    Estado: " + preguntas[i].getEstado() + " recompensa: " + preguntas[i].getRecompensa());
-                System.out.println("    Respuestas:");
-                for (Respuesta r : respuestas) {
-                    if (r.getIdPregunta() == preguntas[i].getId()){
-                        System.out.println("        "+r.getId()+": "+r.getContenido());
-                    }
-                }
-            }
-        }
-    }
     //
     // Métodos pedidos
     // register
@@ -263,7 +223,9 @@ public class Stack {
             respuesta.setVc(respuesta.getVc()+1);
         }
     }
-
+    /*
+    Método que inicializa el Stack con preguntas, respuestas, usuarios y etiquetas definidas en el mísmo método
+     */
     public void inicial(){
         User u1 = new User("Meredith","Grey");
         User u2 = new User("Cristina","Yang");

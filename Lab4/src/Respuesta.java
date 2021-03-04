@@ -28,26 +28,11 @@ public class Respuesta {
     public int getIdPregunta() {
         return idPregunta;
     }
-    public void setIdPregunta(int idPregunta) {
-        this.idPregunta = idPregunta;
-    }
     public User getAutor() {
         return autor;
     }
-    public void setAutor(User autor) {
-        this.autor = autor;
-    }
     public String getContenido() {
         return contenido;
-    }
-    public void setContenido(String contenido) {
-        this.contenido = contenido;
-    }
-    public Date getFecha() {
-        return fecha;
-    }
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
     }
     public int getVf() {
         return vf;
@@ -61,7 +46,9 @@ public class Respuesta {
     public void setVc(int vc) {
         this.vc = vc;
     }
-
+    /*
+    Método que entrega un String con la información dela respuesta
+    */
     public String mostrarRespuesta(){
         String r = this.id + "\n" + this.getContenido() +
                 "\n    Votos a favor: "+ this.vf +

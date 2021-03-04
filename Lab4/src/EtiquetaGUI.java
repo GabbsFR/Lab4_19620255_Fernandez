@@ -1,3 +1,6 @@
+/*
+Ventana que pide la información necesaria para crear una etiqueta y permite crearla
+ */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +19,7 @@ public class EtiquetaGUI extends JFrame {
         this.setContentPane((panel1));
         success.setVisible(false);
 
-
+        // si los campos de texto estan rellenos se permite crear la etiqueta al apretar el botón
         crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,6 +37,8 @@ public class EtiquetaGUI extends JFrame {
                 }
             }
         });
+
+        //botón que permite volver a la página principal
         volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

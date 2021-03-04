@@ -1,10 +1,9 @@
+/*
+Ventana que perimite tanto el ingreso como el registro de usuarios
+ */
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Calendar;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Scanner;
 
 public class Login_Register extends JFrame{
     private JPanel inicio;
@@ -17,11 +16,13 @@ public class Login_Register extends JFrame{
 
     public Login_Register(String title, Stack stack) {
         super(title);
-
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((inicio));
         this.setSize(450,450);
         this.setLocationRelativeTo(null);
+
+        // si los campos de texto están rellenos y el nombre de usuario y contraseña coinciden con los registrados
+        // se permite iniciar sesión
         ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -40,6 +41,9 @@ public class Login_Register extends JFrame{
                 }
             }
         });
+
+        // si los campos de texto están rellenos y el nombre de usuario no ha sido ocupado, permite
+        // el registro de un nuevo usuario
         registrarseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -57,6 +61,8 @@ public class Login_Register extends JFrame{
                 }
             }
         });
+
+        // permite volver a la página principal sin iniciar o registrar sesión
         volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
