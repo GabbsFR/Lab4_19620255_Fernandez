@@ -1,17 +1,17 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 
 public class Principal extends JFrame{
 
     private JPanel principal;
-    private JButton button1;
+    private JButton iniciar_login_logout;
     private JList<String> list1;
     private JTextPane textPane1;
     private JButton agregarPreguntaButton;
     private JButton button3;
     private JLabel success;
+    private JButton tusPreguntasButton;
+    private JLabel reputacion;
 
     public Principal(String title, Stack stack) {
         super(title);
@@ -19,9 +19,14 @@ public class Principal extends JFrame{
         this.setContentPane((principal));
         this.setSize(1450,850);
         if (stack.getActivo().getName().equals("")){
-            button1.setText("Ingresar o Registrarse");
+            iniciar_login_logout.setText("Ingresar o Registrarse");
+            reputacion.setVisible(false);
+            tusPreguntasButton.setVisible(false);
         }else{
-            button1.setText(stack.getActivo().getName());
+            iniciar_login_logout.setText("Cerrar Sesión");
+            reputacion.setText("Reputación: "+stack.getActivo().getReputacion());
+            reputacion.setVisible(true);
+            tusPreguntasButton.setVisible(true);
         }
 
         DefaultListModel preguntas = new DefaultListModel();
@@ -30,7 +35,7 @@ public class Principal extends JFrame{
         }
         list1.setModel(preguntas);
 
-        button1.addActionListener(new ActionListener() {
+        iniciar_login_logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (stack.getActivo().getName().equals("")){
@@ -38,7 +43,8 @@ public class Principal extends JFrame{
                     JFrame frame = new Login_Register("StackOverflow GFR", stack);
                     frame.setVisible(true);
                 }else{
-
+                    stack.logout();
+                    iniciar_login_logout.setText("Ingresar o Registrarse");
                 }
             }
         });
@@ -55,7 +61,9 @@ public class Principal extends JFrame{
                 if(stack.getActivo().getName().equals("")){
                     success.setText("Debes tener sesión activa para realizar acciones");
                 }else{
-
+                    dispose();
+                    JFrame frame = new AddQuestion("Agregar Pregunta - StackOverflow GFR",stack,"","");
+                    frame.setVisible(true);
                 }
             }
         });
@@ -72,6 +80,13 @@ public class Principal extends JFrame{
                     JFrame frame = new PreguntasGUI("Principal - StackOverflow GFR",stack,id-1);
                     frame.setVisible(true);
                 }
+            }
+        });
+
+        tusPreguntasButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
             }
         });
     }

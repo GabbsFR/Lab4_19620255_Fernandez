@@ -10,6 +10,8 @@ public class PreguntasGUI extends JFrame {
     private JButton agregarRecompensaButton;
     private JPanel preguntaG;
     private JLabel contenido;
+    private JButton volver;
+    private JButton cerrarSesiónButton;
 
     public PreguntasGUI(String title, Stack stack, int id) {
         super(title);
@@ -28,6 +30,28 @@ public class PreguntasGUI extends JFrame {
         list1.setModel(respuestas);
 
         votarRespuestaOPreguntaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        volver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame frame = new Principal("Principal - StackOverflow GFR",stack);
+                frame.setVisible(true);
+            }
+        });
+
+        agregarRecompensaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        agregarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

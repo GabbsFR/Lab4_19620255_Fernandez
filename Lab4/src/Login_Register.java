@@ -13,6 +13,7 @@ public class Login_Register extends JFrame{
     private JButton ingresarButton;
     private JButton registrarseButton;
     private JLabel success;
+    private JButton volver;
 
     public Login_Register(String title, Stack stack) {
         super(title);
@@ -54,6 +55,14 @@ public class Login_Register extends JFrame{
                 }else{
                     success.setText("Usuario ya registrado, elija otro nombre de usuario");
                 }
+            }
+        });
+        volver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                JFrame frame = new Principal("Principal - StackOverflow GFR",stack);
+                frame.setVisible(true);
             }
         });
     }

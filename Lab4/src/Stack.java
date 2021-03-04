@@ -1,6 +1,5 @@
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
 
 public class Stack {
     private Pregunta [] preguntas;
@@ -144,7 +143,6 @@ public class Stack {
         for (User user : this.getUsers()) {
             if (user.getName().equals(name)){
                 flag = false;
-                System.out.println("    fallo: Nombre de usuario ya registrado");
             }
         }
         if (flag){
@@ -181,9 +179,6 @@ public class Stack {
         if (!this.getActivo().getName().equals("")){
             User vacio = new User("","");
             this.setActivo(vacio);
-            System.out.println("    éxito: sesión cerrada sin problemas");
-        }else{
-            System.out.println("    fallo: no existe sesión iniciada");
         }
     }
     // ask
@@ -197,7 +192,6 @@ public class Stack {
         Date fecha = Calendar.getInstance().getTime();
         Pregunta pregunta = new Pregunta(id,etiquetas,titulo,contenido,fecha,this.getActivo());
         this.addPregunta(pregunta);
-        System.out.println("    éxito: Pregunta ingresada sin problemas");
     }
     // answer
     /*
@@ -215,7 +209,6 @@ public class Stack {
         }
         stack.addRespuesta(respuesta);
         pregunta.addRespuesta(respuesta);
-        System.out.println("    éxito: respuesta ingresada sin problemas");
     }
     // reward
     /*
@@ -227,9 +220,6 @@ public class Stack {
         if (this.getActivo().getReputacion() >= recompensa){
             pregunta.agregarRecompensa(recompensa);
             this.getActivo().setReputacion(this.getActivo().getReputacion() - recompensa);
-            System.out.println("    éxito: Recompensa ofrecida sin problemas");
-        }else{
-            System.out.println("    fallo: No se ofreció la recompensa, recompensa ofrecida es mayor que su reputación");
         }
     }
     // accept
@@ -242,7 +232,6 @@ public class Stack {
         pregunta.setEstado("cerrada");
         respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + pregunta.getRecompensa() + 15);
         pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 2);
-        System.out.println("    éxito: Respuesta aceptada sin problemas");
     }
     // vote
     /*
@@ -253,9 +242,10 @@ public class Stack {
     public void vote(Pregunta pregunta, boolean tipo){
         if (tipo){
             pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 10);
-
+            pregunta.setVf(pregunta.getVf() +1);
         }else{
             pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() - 2);
+            pregunta.setVc(pregunta.getVc() +1);
         }
     }
     /*
@@ -266,9 +256,11 @@ public class Stack {
     public void vote(Respuesta respuesta, boolean tipo){
         if (tipo){
             respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + 10);
+            respuesta.setVf(respuesta.getVf()+1);
         }else{
             respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() - 2);
             this.getActivo().setReputacion(this.getActivo().getReputacion() - 1);
+            respuesta.setVc(respuesta.getVc()+1);
         }
     }
 
