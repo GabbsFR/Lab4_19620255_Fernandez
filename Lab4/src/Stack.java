@@ -199,15 +199,15 @@ public class Stack {
     Dom: Stack stack,Pregunta pregunta,String contenido
     Rec: Void
     */
-    public void answer(Stack stack,Pregunta pregunta,String contenido){
+    public void answer(Pregunta pregunta,String contenido){
         Date fecha = Calendar.getInstance().getTime();
         Respuesta respuesta;
         if (pregunta.getRespuestas() == null){
-            respuesta = new Respuesta(1, pregunta.getId(), stack.getActivo(), contenido, fecha);
+            respuesta = new Respuesta(1, pregunta.getId(),this.getActivo(), contenido, fecha);
         }else {
-            respuesta = new Respuesta(pregunta.getRespuestas().length + 1, pregunta.getId(), stack.getActivo(), contenido, fecha);
+            respuesta = new Respuesta(pregunta.getRespuestas().length + 1, pregunta.getId(), this.getActivo(), contenido, fecha);
         }
-        stack.addRespuesta(respuesta);
+        this.addRespuesta(respuesta);
         pregunta.addRespuesta(respuesta);
     }
     // reward
