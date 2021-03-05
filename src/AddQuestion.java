@@ -34,7 +34,7 @@ public class AddQuestion extends JFrame{
             etSel = new Etiqueta[0];
         }
 
-        DefaultListModel etiquetas = new DefaultListModel();
+        DefaultListModel<String> etiquetas = new DefaultListModel<String>();
         for (Etiqueta etiqueta : stack.getEtiquetas()) {
             etiquetas.addElement(etiqueta.getNombre()+": "+etiqueta.getDescripcion());
         }

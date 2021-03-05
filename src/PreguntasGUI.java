@@ -49,7 +49,7 @@ public class PreguntasGUI extends JFrame {
             aceptarRespuestaButton.setVisible(false);
         }
 
-        DefaultListModel respuestas = new DefaultListModel();
+        DefaultListModel<String> respuestas = new DefaultListModel<String>();
         for (Respuesta respuesta : p.getRespuestas()) {
             respuestas.addElement(respuesta.getId()+": "+respuesta.getContenido());
         }

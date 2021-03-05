@@ -2,11 +2,12 @@
 Ventana principal que permite ver las preguntas y su información sin la necesidad de estar ingresado/a
  */
 import javax.swing.*;
+import javax.swing.text.View;
 import java.awt.event.*;
 
 public class Principal extends JFrame{
 
-    private JPanel principal;
+    private JPanel panel;
     private JButton iniciar_login_logout;
     private JList<String> list1;
     private JTextPane textPane1;
@@ -18,7 +19,7 @@ public class Principal extends JFrame{
     public Principal(String title, Stack stack) {
         super(title);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setContentPane((principal));
+        this.setContentPane(this.panel);
         this.setSize(1450,850);
 
         // oculta la información que se pone visible solo para usuarios ingresados
@@ -31,7 +32,7 @@ public class Principal extends JFrame{
             reputacion.setVisible(true);
         }
 
-        DefaultListModel preguntas = new DefaultListModel();
+        DefaultListModel<String> preguntas = new DefaultListModel<String>();
         for (Pregunta pregunta : stack.getPreguntas()) {
             preguntas.addElement(pregunta.getId()+": "+pregunta.getContenido());
         }
