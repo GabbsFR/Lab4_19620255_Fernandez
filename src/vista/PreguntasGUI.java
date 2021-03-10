@@ -1,11 +1,12 @@
 package vista;
 /*
-Ventana que muestra una pregunta con sus respuestas y permite que se agreguen respuestas,
-se vote, se acepte, se agregue recompensa,etc.
- */
+Vista que despliega la información especifica de una pregunta y permite votar la pregunta o sus respuestas,
+también permite al autor de la pregunta aceptar una respuesta.
+*/
 import javax.swing.*;
 
 public class PreguntasGUI extends JFrame {
+
     public JLabel user;
     public JList<String> list1;
     public JButton agregarRespuestaButton;
@@ -24,12 +25,12 @@ public class PreguntasGUI extends JFrame {
     public JLabel tituloPreg;
     public JTextPane infoPregunta;
 
+    // Constructor de la ventana
     public PreguntasGUI() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((preguntaG));
         this.setSize(1450,850);
         user.setBounds(-50,20,30,20);
         respuestaSeleccionada.setText("");
-
     }
 }

@@ -1,9 +1,9 @@
 package controlador;
-
+/*
+Controlador de la vista "AddQuestion"
+ */
 import modelo.*;
-import vista.AddQuestion;
-import vista.EtiquetaGUI;
-import vista.Principal;
+import vista.*;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,15 +16,18 @@ public class CAddQuestion{
 
     public CAddQuestion(Stack stack, AddQuestion vista) {
 
+        // Se rellena el componente JList con la información de las etiquetas que estan en el stack
         DefaultListModel<String> etiquetas = new DefaultListModel<>();
         for (Etiqueta etiqueta : stack.getEtiquetas()) {
             etiquetas.addElement(etiqueta.getNombre()+": "+etiqueta.getDescripcion());
         }
-        etiquetas.addElement("Agregar Etiqueta");
+        etiquetas.addElement("Agregar Etiqueta"); //Se agrega la opción de agregar una etiqueta
         vista.list1.setModel(etiquetas);
 
+        // se muestra la ventana
         vista.setVisible(true);
 
+        // Si se presiona el botón "volverButton" se redirige a la vista "Principal"
         vista.volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -34,6 +37,8 @@ public class CAddQuestion{
             }
         });
 
+        // Si se presiona el botón "crearButton" se verifica que se haya escrito en "titulo" y "contenido" y de ser así
+        // se llama a stack.ask() con la información obtenida y luego se redirige a la vista "Principal"
         vista.crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -44,11 +49,12 @@ public class CAddQuestion{
                     stack.ask(vista.titulo.getText(),vista.contenido.getText(),etSel);
                     vista.dispose();
                     Principal vPrincipal = new Principal();
-                    CPrincipal cPrincipal = new CPrincipal(stack,vPrincipal);
+                    new CPrincipal(stack,vPrincipal);
                 }
             }
         });
 
+        // Si se presiona alguna etiqueta de la lista se agrega su información a la etiquetas seleccionadas
         vista.list1.getSelectionModel().addListSelectionListener(e -> {
             int index = vista.list1.getSelectedIndex();
             if (index == stack.getEtiquetas().length){

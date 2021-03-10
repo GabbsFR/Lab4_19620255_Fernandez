@@ -1,5 +1,7 @@
 package controlador;
-
+/*
+Controlador de la vista "Login_Register"
+*/
 import modelo.*;
 import vista.*;
 
@@ -9,9 +11,12 @@ import java.awt.event.ActionListener;
 public class CLogin_Register {
 
     public CLogin_Register(Stack stack, Login_Register vista) {
+        // muestra como visible la ventana
+        vista.setVisible(true);
 
-       vista.setVisible(true);
-
+        // Si se presiona el botón "ingresarButton" se ejecuta stack.login() con la información de textUser y textPass
+        // si el método ejecutado retorna true significa que la operación fue fallida, de lo contrario se
+        // redirige a la vista "Principal" son el stack actualizado con el usuario activo ingresado
         vista.ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,8 +35,8 @@ public class CLogin_Register {
             }
         });
 
-        // si los campos de texto están rellenos y el nombre de usuario no ha sido ocupado, permite
-        // el registro de un nuevo usuario
+        // Si se presiona el botón "registrarseButton" y los campos de texto están rellenos, y el nombre de usuario
+        // no ha sido ocupado, permite el registro de un nuevo usuario
         vista.registrarseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,7 +55,7 @@ public class CLogin_Register {
             }
         });
 
-        // permite volver a la página principal sin iniciar o registrar sesión
+        // Si se presiona el botón "volver", se redirige a la vista "Principal" sin iniciar o registrar sesión
         vista.volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

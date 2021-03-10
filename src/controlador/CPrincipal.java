@@ -1,5 +1,7 @@
 package controlador;
-
+/*
+Controlador de la vista "Principal", se ocupa de reaccionar a las acciones que tome el usuario en la ventana "Principal"
+*/
 import modelo.*;
 import vista.*;
 
@@ -8,33 +10,36 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class CPrincipal{
-
+    //Constructor
     public CPrincipal(Stack stack,Principal vista){
-
-        // oculta la información que se pone visible solo para usuarios ingresados
-        if (stack.getActivo().getName().equals("")){
+        // Se configura de maneras diferentes el boton de ingresar/registrarse o cerrar sesión y tambien el label de reputacion
+        if (stack.getActivo().getName().equals("")){ //si no se tiene usuario activo
             vista.iniciar_login_logout.setText("Ingresar o Registrarse");
             vista.reputacion.setVisible(false);
-        }else{
+        }else{//si se tiene usuario activo
             vista.iniciar_login_logout.setText("Cerrar Sesión");
             vista.reputacion.setText("Reputación: "+stack.getActivo().getReputacion());
             vista.reputacion.setVisible(true);
         }
 
+        // Se rellena el componente JList con las preguntas que tiene el stack
         DefaultListModel<String> preguntas = new DefaultListModel<String>();
         for (Pregunta pregunta : stack.getPreguntas()) {
             preguntas.addElement(pregunta.getId()+": "+pregunta.getContenido());
         }
         vista.list1.setModel(preguntas);
 
+        // Se muestra visible la ventana "Principal"
         vista.setVisible(true);
 
+        // Si se selecciona una pregunta de la lista, esta se despliega con mayor información en textPanel1
         vista.list1.getSelectionModel().addListSelectionListener(e -> {
             vista.success.setText("");
             int id = vista.list1.getSelectedIndex();
             vista.textPane1.setText(stack.getPreguntas()[id].mostrarPregunta());
         });
 
+        // Si se presiona el botón "agregarPregunta" se redirige a la vista "AddQuestion" solo si existe usuario activo
         vista.agregarPreguntaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,8 +52,10 @@ public class CPrincipal{
                 }
             }
         });
-        
-        vista.button3.addActionListener(new ActionListener() {
+
+        // Si se presiona el botón "seleccionarPregunta" se redirige a la vista "PreguntasGUI"
+        // solo si se tiene usuario activo y se ha seleccionado una pregunta en la lista
+        vista.seleccionarPregunta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(vista.textPane1.getText().equals("")){
@@ -63,7 +70,9 @@ public class CPrincipal{
                 }
             }
         });
-        
+
+        // Si se presiona el botón "iniciar_login_logout" se redirige a la vista "Login_Register" si es que existe
+        // usuario activo de lo contrario se redirige a la misma vista pero se cierra la sesión del stack
         vista.iniciar_login_logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

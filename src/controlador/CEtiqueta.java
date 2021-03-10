@@ -1,5 +1,7 @@
 package controlador;
-
+/*
+Controlador de la vista "EtiquetaGUI"
+ */
 import vista.*;
 import modelo.*;
 
@@ -9,9 +11,10 @@ import java.awt.event.ActionListener;
 public class CEtiqueta {
 
     public CEtiqueta(Stack stack,EtiquetaGUI vista) {
-
+        // Se muestra la ventana
         vista.setVisible(true);
 
+        // Si se presiona el botón "crearButton" y se rellenaron los espacion de texto, se permite crear una etiqueta
         vista.crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -30,7 +33,7 @@ public class CEtiqueta {
             }
         });
 
-        //botón que permite volver a la página principal
+        // Si se presiona el botón "volverButton" se redirige a la vista "Principal"
         vista.volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

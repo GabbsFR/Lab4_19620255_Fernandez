@@ -1,7 +1,6 @@
 package vista;
 /*
-Ventana que pide la información necesaria para crear una nueva pregunta,
-y permite crearla una vez esta información este rellenada
+Vista que despliega un formulario para rellenar que pide la información necesaria para crear una pregunta
  */
 
 import javax.swing.*;
@@ -16,6 +15,7 @@ public class AddQuestion extends JFrame{
     public JTextArea etSelecionadas;
     public JLabel success;
 
+    // Constructor de la ventana
     public AddQuestion() {
         super("");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +23,5 @@ public class AddQuestion extends JFrame{
         this.setSize(1450,850);
         etSelecionadas.setText("Etiquetas Seleccionadas:");
         success.setVisible(false);
-
     }
 }

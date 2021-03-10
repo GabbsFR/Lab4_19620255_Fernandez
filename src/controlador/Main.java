@@ -1,13 +1,15 @@
 package controlador;
-
+/*
+Controlador principal, inicia el programa
+*/
 import modelo.*;
 import vista.*;
 
 public class Main {
     public static void main(String[] args){
-        Stack stack = new Stack();
-        Principal vista = new Principal();
-        new CPrincipal(stack,vista);
+        Stack stack = new Stack(); //Stack inicial
+        Principal vista = new Principal(); //Vista Principal
+        new CPrincipal(stack,vista); //Controlador de la vista principal
         vista.setVisible(true);
     }
 }

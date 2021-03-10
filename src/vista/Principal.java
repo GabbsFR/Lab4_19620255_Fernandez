@@ -14,7 +14,7 @@ public class Principal extends JFrame{
     public JList<String> list1;
     public JTextPane textPane1;
     public JButton agregarPreguntaButton;
-    public JButton button3;
+    public JButton seleccionarPregunta;
     public JLabel success;
     public JLabel reputacion;
 

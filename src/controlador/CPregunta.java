@@ -1,5 +1,7 @@
 package controlador;
-
+/*
+Controlador de la vista "PreguntasGUI"
+*/
 import vista.*;
 import modelo.*;
 
@@ -72,7 +74,7 @@ public class CPregunta {
             }
         });
 
-        // permite aceptar una respuesta (esta opcion le saldra dispnible solo al autor de la pregunta)
+        // permite aceptar una respuesta (esta opción le saldrá disponible solo al autor de la pregunta)
         vista.aceptarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,6 +156,7 @@ public class CPregunta {
         });
     }
 
+    // Método que inicializa la ventana "PreguntasGUI" con la información del Stack y de la pregunta seleccionada
     public void inicializar(){
         vista.user.setText(stack.getActivo().getName());
         vista.tituloPreg.setText(pregunta.getTitulo());
@@ -171,6 +174,7 @@ public class CPregunta {
             vista.aceptarRespuestaButton.setVisible(false);
         }
 
+        // rellena el componenete JList con las respuestas de la pregunta
         DefaultListModel<String> respuestas = new DefaultListModel<>();
         for (Respuesta respuesta : pregunta.getRespuestas()) {
             respuestas.addElement(respuesta.getId()+": "+respuesta.getContenido());

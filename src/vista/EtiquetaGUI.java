@@ -1,10 +1,8 @@
 package vista;
 /*
-Ventana que pide la información necesaria para crear una etiqueta y permite crearla
+Vista que despliega un formulario para crear una nueva etiqueta
  */
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EtiquetaGUI extends JFrame {
     public JPanel panel1;
@@ -14,6 +12,7 @@ public class EtiquetaGUI extends JFrame {
     public JLabel success;
     public JButton volverButton;
 
+    // Constructor de la ventana
     public EtiquetaGUI(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((panel1));

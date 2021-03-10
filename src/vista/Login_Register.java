@@ -1,10 +1,8 @@
 package vista;
 /*
-Ventana que perimite tanto el ingreso como el registro de usuarios
+Vista que despliega un formulario para ingresar o registrarse en la plataforma
  */
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Login_Register extends JFrame{
     public JPanel inicio;
@@ -15,6 +13,7 @@ public class Login_Register extends JFrame{
     public JLabel success;
     public JButton volver;
 
+    // Constructor de la ventana
     public Login_Register() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setContentPane((inicio));
