@@ -1,3 +1,5 @@
+package modelo;
+
 public class User {
     private String name; // nombre del usuario
     private String pass; // contraseña del usuario

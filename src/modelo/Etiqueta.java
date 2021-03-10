@@ -1,8 +1,9 @@
+package modelo;
 public class Etiqueta {
     private String nombre;
     private String descripcion;
     //constructor etiqueta
-    Etiqueta(String nombre, String descripcion){
+    public Etiqueta(String nombre, String descripcion){
         this.nombre = nombre;
         this.descripcion = descripcion;
     }

@@ -1,3 +1,5 @@
+package modelo;
+
 import java.util.Calendar;
 import java.util.Date;
 
@@ -14,6 +16,7 @@ public class Stack {
         this.users = new User[0];
         this.activo = new User("","");
         this.etiquetas = new Etiqueta[0];
+        this.inicial();
     }
     // Setters y Getters de atributos
     public Pregunta[] getPreguntas() {
