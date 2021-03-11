@@ -1,6 +1,7 @@
-/*
-Controlador principal, inicia el programa
-*/
+/**
+ * clase que inicia el programa
+ */
+
 import controlador.*;
 import modelo.*;
 import vista.*;
