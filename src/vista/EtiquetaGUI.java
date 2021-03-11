@@ -1,6 +1,8 @@
 package vista;
-/*
-Vista que despliega un formulario para crear una nueva etiqueta
+/**
+ * clase que genera una ventana con un formulario para agregar una etiqueta
+ * @version 10/03/2021
+ * @author Gabriela Fernández
  */
 import javax.swing.*;
 

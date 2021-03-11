@@ -1,7 +1,10 @@
 package controlador;
-/*
-Controlador de la vista "Principal", se ocupa de reaccionar a las acciones que tome el usuario en la ventana "Principal"
-*/
+/**
+ * clase que controla la vista "Principal",
+ * se ocupa de reaccionar a las acciones que tome el usuario en la ventana "Principal"
+ * @version 10/03/2021
+ * @author Gabriela Fernández
+ */
 import modelo.*;
 import vista.*;
 
@@ -31,15 +34,17 @@ public class CPrincipal{
 
         // Se muestra visible la ventana "Principal"
         vista.setVisible(true);
-
-        // Si se selecciona una pregunta de la lista, esta se despliega con mayor información en textPanel1
+        /**
+         * Al presionar en algun elemento de lista1, la pregunta seleccionada se despliega con mayor información en textPanel
+         */
         vista.list1.getSelectionModel().addListSelectionListener(e -> {
             vista.success.setText("");
             int id = vista.list1.getSelectedIndex();
             vista.textPane1.setText(stack.getPreguntas()[id].mostrarPregunta());
         });
-
-        // Si se presiona el botón "agregarPregunta" se redirige a la vista "AddQuestion" solo si existe usuario activo
+        /**
+         * Si se presiona el botón "agregarPregunta" se redirige a la vista "AddQuestion" solo si existe usuario activo
+         */
         vista.agregarPreguntaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -52,9 +57,10 @@ public class CPrincipal{
                 }
             }
         });
-
-        // Si se presiona el botón "seleccionarPregunta" se redirige a la vista "PreguntasGUI"
-        // solo si se tiene usuario activo y se ha seleccionado una pregunta en la lista
+        /**
+         * Si se presiona el botón "seleccionarPregunta" se redirige a la vista "PreguntasGUI"
+         * solo si se tiene usuario activo y se ha seleccionado una pregunta en la lista
+         */
         vista.seleccionarPregunta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -70,9 +76,10 @@ public class CPrincipal{
                 }
             }
         });
-
-        // Si se presiona el botón "iniciar_login_logout" se redirige a la vista "Login_Register" si es que existe
-        // usuario activo de lo contrario se redirige a la misma vista pero se cierra la sesión del stack
+        /**
+         * Si se presiona el botón "iniciar_login_logout" se redirige a la vista "Login_Register" si es que existe
+         * usuario activo de lo contrario se redirige a la misma vista pero se cierra la sesión del stack
+         */
         vista.iniciar_login_logout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

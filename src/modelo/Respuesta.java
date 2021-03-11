@@ -1,4 +1,10 @@
 package modelo;
+/**
+ * clase para representar una respuesta
+ * @version 10/03/2021
+ * @author Gabriela Fernández
+ */
+
 import java.util.Date;
 
 public class Respuesta {
@@ -47,9 +53,11 @@ public class Respuesta {
     public void setVc(int vc) {
         this.vc = vc;
     }
-    /*
-    Método que entrega un String con la información dela respuesta
-    */
+
+    /**
+     * Metodo que toma la información de la respuesta y genera un String con la información organizada
+     * @return String con información de la respuesta
+     */
     public String mostrarRespuesta(){
         String r = this.id + "\n" + this.getContenido() +
                 "\n    Votos a favor: "+ this.vf +

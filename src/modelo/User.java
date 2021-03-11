@@ -1,4 +1,9 @@
 package modelo;
+/**
+ * clase para representar un usuario
+ * @version 10/03/2021
+ * @author Gabriela Fernández
+ */
 
 public class User {
     private String name; // nombre del usuario

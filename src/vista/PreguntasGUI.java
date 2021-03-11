@@ -1,8 +1,10 @@
 package vista;
-/*
-Vista que despliega la información especifica de una pregunta y permite votar la pregunta o sus respuestas,
-también permite al autor de la pregunta aceptar una respuesta.
-*/
+/**
+ * clase que genera una ventana que despliega la información de una pregunta
+ * y muestra botones para realizar diversas acciones
+ * @version 10/03/2021
+ * @author Gabriela Fernández
+ */
 import javax.swing.*;
 
 public class PreguntasGUI extends JFrame {

@@ -5,7 +5,6 @@ Ventana principal que permite ver las preguntas y su información sin la necesid
  */
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
 
 public class Principal extends JFrame{
 

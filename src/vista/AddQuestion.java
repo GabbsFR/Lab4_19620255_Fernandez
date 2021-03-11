@@ -1,6 +1,8 @@
 package vista;
-/*
-Vista que despliega un formulario para rellenar que pide la información necesaria para crear una pregunta
+/**
+ * clase que genera una ventana con un formulario para agregar una pregunta
+ * @version 10/03/2021
+ * @author Gabriela Fernández
  */
 
 import javax.swing.*;

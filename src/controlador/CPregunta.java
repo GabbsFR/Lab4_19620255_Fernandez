@@ -1,7 +1,9 @@
 package controlador;
-/*
-Controlador de la vista "PreguntasGUI"
-*/
+/**
+ * Una clase comunicar las clases del modelo a la de la vista "PreguntasGUI"
+ * @version  10/03/2021
+ * @author Gabriela Fernández
+ */
 import vista.*;
 import modelo.*;
 
@@ -11,10 +13,10 @@ import java.awt.event.ActionListener;
 
 public class CPregunta {
 
-    Stack stack;
-    PreguntasGUI vista;
-    Pregunta pregunta;
-    int idP;
+    public Stack stack;
+    public PreguntasGUI vista;
+    public Pregunta pregunta;
+    public int idP;
 
     public CPregunta(Stack s, PreguntasGUI vPreg, int id) {
        stack = s;
@@ -25,15 +27,19 @@ public class CPregunta {
        inicializar();
 
        vista.setVisible(true);
-
-        // cuando se selecciona una respuesta de la lista de respuestas, pone la información de la misma en un recuadro en la ventana
+        /**
+         * cuando se selecciona una respuesta de la lista de respuestas,
+         * pone la información de la misma en un recuadro en la ventana
+         */
         vista.list1.getSelectionModel().addListSelectionListener(e -> {
            vista.success.setText("");
             int idRespuesta =vista.list1.getSelectedIndex();
            vista.respuestaSeleccionada.setText(idRespuesta +pregunta.getRespuestas()[idRespuesta].mostrarRespuesta());
         });
 
-        // permite volver a la ventana principal
+        /**
+         * Al presionar el botón "volver" se redirige a la vista "Principal"
+         */
         vista.volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -43,7 +49,10 @@ public class CPregunta {
             }
         });
 
-        // permite agregar una respuesta siempre y cuando se rellene el campo de texto
+        /**
+         * Al presionar el botón "agregarRespuestaButton" permite agregar una respuesta
+         * siempre y cuando este relleno el campo de texto
+         */
         vista.agregarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,7 +67,10 @@ public class CPregunta {
             }
         });
 
-        // permite agregar una recompensa siempre que se cumpla con las condiciones
+        /**
+         * Al presionar el botón "agregarRecompensa" permite agregar una recompensa
+         * siempre que se cumpla con las condiciones
+         */
         vista.agregarRecompensaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -74,7 +86,10 @@ public class CPregunta {
             }
         });
 
-        // permite aceptar una respuesta (esta opción le saldrá disponible solo al autor de la pregunta)
+        /**
+         * Al presionar el botón "aceptarRespuesta" permite aceptar una respuesta
+         * (esta opción le saldrá disponible solo al autor de la pregunta)
+         */
         vista.aceptarRespuestaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,7 +107,9 @@ public class CPregunta {
             }
         });
 
-        // Permite votar a favor de la pregunta
+        /**
+         * Al presionar el botón "votarPreguntaAFavorButton" Permite votar a favor de la pregunta
+         */
         vista.votarPreguntaAFavorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
@@ -107,7 +124,9 @@ public class CPregunta {
             }
         });
 
-        // Permite votar en contra de la pregunta
+        /**
+         * Al presionar el botón "votarPreguntaEnContraButton" Permite votar a en contra de la pregunta
+         */
         vista.votarPreguntaEnContraButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -122,7 +141,10 @@ public class CPregunta {
             }
         });
 
-        // Permite votar a favor de una respuesta siempre que se haya seleccionado alguna
+        /**
+         * Al presionar el botón "votarRespuestaAFavorButton" Permite votar a favor de una
+         * respuesta siempre que se haya seleccionado alguna
+         */
         vista.votarRespuestaAFavorButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,7 +160,10 @@ public class CPregunta {
                 }
             }
         });
-        // Permite votar en contra de una respuesta siempre que se haya seleccionado alguna
+        /**
+         * Al presionar el botón "votarRespuestaEnContraButton" Permite votar en contra de una
+         * respuesta siempre que se haya seleccionado alguna
+         */
         vista.votarRespuestaEnContraButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,8 +180,9 @@ public class CPregunta {
             }
         });
     }
-
-    // Método que inicializa la ventana "PreguntasGUI" con la información del Stack y de la pregunta seleccionada
+    /**
+     * Método que configura la ventana "PreguntasGUI" con la información del Stack y de la pregunta seleccionada
+     */
     public void inicializar(){
         vista.user.setText(stack.getActivo().getName());
         vista.tituloPreg.setText(pregunta.getTitulo());

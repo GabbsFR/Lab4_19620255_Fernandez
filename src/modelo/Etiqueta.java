@@ -1,4 +1,9 @@
 package modelo;
+/**
+ * clase para representar una etiqueta
+ * @version 10/03/2021
+ * @author Gabriela Fernández
+ */
 public class Etiqueta {
     private String nombre;
     private String descripcion;

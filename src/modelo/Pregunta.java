@@ -1,4 +1,9 @@
 package modelo;
+/**
+ * Una clase para representar
+ * @version  10/03/2021
+ * @author Gabriela Fernández
+ */
 import java.util.Date;
 
 public class Pregunta {
@@ -73,10 +78,10 @@ public class Pregunta {
     /*
         Métodos
          */
-    /*
-    método que permite agregar una respuesta al array de respuestas
-    dom : la respuesta que se quiere agregar
-    rec : vacío, dentro del método se modifica el array de respuestas
+
+    /**
+     * método que permite agregar una respuesta al array de respuestas
+     * @param respuesta la respuesta que se agregará
      */
     public void addRespuesta(Respuesta respuesta){
         if (this.respuestas == null){
@@ -91,16 +96,18 @@ public class Pregunta {
             this.respuestas[aux.length] = respuesta;
         }
     }
-    /*
-    método que agrega recompensa a la pregunta
-    dom: cantidad que se desea agregar
-    rec: vacía, se modifica la recompensa dentro del método
+
+    /**
+     * método que agrega recompensa a la pregunta
+     * @param n cantidad de recompensa que se agregará
      */
     public void agregarRecompensa(int n){
         this.recompensa = this.recompensa + n;
     }
-    /*
-    método que entrega un String con la información de la pregunta
+
+    /**
+     * método que entrega un String con la información de la pregunta
+     * @return string que contiene la información de la pregunta ordenad
      */
     public String mostrarPregunta(){
         String p = this.id + ": "+ this.contenido +

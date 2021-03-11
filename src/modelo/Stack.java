@@ -1,4 +1,8 @@
 package modelo;
+/**
+ * clase para representar un contenedor de preguntas, respuestas, etiquetas y usuarios
+ * @author Gabriela Fernández
+ */
 
 import java.util.Calendar;
 import java.util.Date;
@@ -36,11 +40,10 @@ public class Stack {
     }
 
     // Métodos
-    /*
-    método que permite agregar una pregunta al array de preguntas
-    dom : Pregunta pregunta
-    rec : void
-    */
+    /**
+     * método que permite agregar una pregunta al array de preguntas
+     * @param pregunta la pregunta que se quiere agregar al stack
+     */
     public void addPregunta(Pregunta pregunta){
         Pregunta[] auxP = this.preguntas;
         this.preguntas = new Pregunta[auxP.length +1];
@@ -50,10 +53,9 @@ public class Stack {
         }
         this.preguntas[auxP.length] = pregunta;
     }
-    /*
-    método que permite agregar una respuesta al array de respuestas
-    dom : la respuesta que se quiere agregar
-    rec : vacío, dentro del método se modifica el array de respuestas
+    /**
+     * método que permite agregar una respuesta al array de respuestas
+     * @param respuesta la respuesta que se quiere agregar al stack
      */
     public void addRespuesta(Respuesta respuesta){
         Respuesta[] auxR = this.respuestas;
@@ -64,10 +66,10 @@ public class Stack {
         }
         this.respuestas[auxR.length] = respuesta;
     }
-    /*
-    método que permite agregar un user al array de users
-    dom : el user que se quiere agregar
-    rec : vacío, dentro del método se modifica el array de users
+
+    /**
+     * método que permite agregar un user al array de users
+     * @param user usuario que se quiere agregar al stack
      */
     public void addUser(User user){
         User[] auxU = this.users;
@@ -78,10 +80,9 @@ public class Stack {
         }
         this.users[auxU.length] = user;
     }
-    /*
-    método que permite agregar una etiqueta al array de users
-    dom : la etiqueta que se quiere agregar
-    rec : vacío, dentro del método se modifica el array de etiquetas
+    /**
+     * método que permite agregar una etiqueta al array de users
+     * @param etiqueta etiqueta que se quiere agregar al stack
      */
     public void addEtiqueta(Etiqueta etiqueta){
         Etiqueta[] auxE = this.etiquetas;
@@ -96,11 +97,13 @@ public class Stack {
     //
     // Métodos pedidos
     // register
-    /*
-    Método que registra a un usuario con su nombre y contraseña
-    Dom: Stack stack, String name, String pass
-    Rec: Void
-    */
+    /**
+     * Método que registra a un usuario con su nombre y contraseña
+     * @param name nombre del usuario a registrar
+     * @param pass contraseña que tendrá el usuario
+     * @return true si se realizo el registro sin problemas, false si se encontró otro usuario con el mismo nombre
+     */
+
     public boolean register(String name, String pass){
         boolean flag = true;
         for (User user : this.getUsers()) {
@@ -115,11 +118,12 @@ public class Stack {
         return flag;
     }
     // login
-    /*
-    Método que ingresa a un usuario con su nombre y contraseña si estas coinciden con algun usuario registrado
-    Dom: Stack stack, String name, String pass
-    Rec: Void
-    */
+    /**
+     * Método que ingresa a un usuario con su nombre y contraseña si estas coinciden con algún usuario registrado
+     * @param name nombre del usuario que quiere ingresar
+     * @param pass contraseña que da el usuario
+     * @return true si no se encontró usuario y contraseña que coincidan, false si se logro ingresar al usuario
+     */
     public boolean login(String name, String pass){
         boolean flag = true;
         for (User user : this.getUsers()) {
@@ -133,11 +137,9 @@ public class Stack {
         return flag;
     }
     // logout
-    /*
-    Método que cierra la sesión al usuario activo
-    Dom: Stack stack
-    Rec: Void
-    */
+    /**
+     *  Método que cierra la sesión al usuario activo
+     */
     public void logout(){
         if (!this.getActivo().getName().equals("")){
             User vacio = new User("","");
@@ -145,11 +147,12 @@ public class Stack {
         }
     }
     // ask
-    /*
-    Método que ingresa una nueva pregunta
-    Dom: Stack stack, String titulo, String contenido, Etiqueta[] etiquetas
-    Rec: Void
-    */
+    /**
+     * Método que ingresa una nueva pregunta
+     * @param titulo título de la pregunta a crear
+     * @param contenido contenido de la pregunta a crear
+     * @param etiquetas etiquetas que llevara la pregunta
+     */
     public void ask(String titulo, String contenido, Etiqueta[] etiquetas){
         int id = this.getPreguntas().length + 1;
         Date fecha = Calendar.getInstance().getTime();
@@ -157,11 +160,11 @@ public class Stack {
         this.addPregunta(pregunta);
     }
     // answer
-    /*
-    Método que ingresa una nueva respuesta
-    Dom: Stack stack,Pregunta pregunta,String contenido
-    Rec: Void
-    */
+    /**
+     * Método que ingresa una nueva respuesta
+     * @param pregunta la pregunta que se contestará
+     * @param contenido el contenido de la respuesta
+     */
     public void answer(Pregunta pregunta,String contenido){
         Date fecha = Calendar.getInstance().getTime();
         Respuesta respuesta;
@@ -174,11 +177,11 @@ public class Stack {
         pregunta.addRespuesta(respuesta);
     }
     // reward
-    /*
-    Método que retiene la recompensa ofrecida por el usuario y la pone en la recompensa de la pregunta
-    Dom: Stack stack,Pregunta pregunta,int recompensa
-    Rec: Void
-    */
+    /**
+     * Método que retiene la recompensa ofrecida por el usuario y la pone en la recompensa de la pregunta
+     * @param pregunta pregunta a la que se le ofrece recompensa
+     * @param recompensa cantidad que se ofrece de recompensa
+     */
     public void reward(Pregunta pregunta,int recompensa){
         if (this.getActivo().getReputacion() >= recompensa){
             pregunta.agregarRecompensa(recompensa);
@@ -186,22 +189,23 @@ public class Stack {
         }
     }
     // accept
-    /*
-    Método que cierra la pregunta y entrega las recompensas al autor de la respuesta y entrega una pequeña recompensa al autor de la pregunta
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
+    /**
+     * Método que cierra la pregunta y entrega las recompensas al autor de la respuesta
+     * y entrega una pequeña recompensa al autor de la pregunta
+     * @param pregunta pregunta en la que se está aceptando una respuesta
+     * @param respuesta respuesta que esta siendo aceptada
+     */
     public void accept(Pregunta pregunta,Respuesta respuesta){
         pregunta.setEstado("cerrada");
         respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + pregunta.getRecompensa() + 15);
         pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 2);
     }
     // vote
-    /*
-    Método que permite votar una pregunta ya sea a favor o en contra y otorga las reputaciones
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
+    /**
+     * Método que permite votar una pregunta ya sea a favor o en contra y otorga las reputaciones
+     * @param pregunta pregunta que se quiere votar
+     * @param tipo true si se quiere votar a favor, false si se quiere votar en contra
+     */
     public void vote(Pregunta pregunta, boolean tipo){
         if (tipo){
             pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 10);
@@ -211,11 +215,11 @@ public class Stack {
             pregunta.setVc(pregunta.getVc() +1);
         }
     }
-    /*
-    Método que permite votar una respuesta ya sea a favor o en contra y otorga las reputaciones
-    Dom: Pregunta pregunta,Respuesta respuesta
-    Rec: Void
-    */
+    /**
+     * Método que permite votar una respuesta ya sea a favor o en contra y otorga las reputaciones
+     * @param respuesta respuesta que se quiere votar
+     * @param tipo true si se quiere votar a favor, false si se quiere votar en contra
+     */
     public void vote(Respuesta respuesta, boolean tipo){
         if (tipo){
             respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + 10);
@@ -226,8 +230,10 @@ public class Stack {
             respuesta.setVc(respuesta.getVc()+1);
         }
     }
-    /*
-    Método que inicializa el Stack con preguntas, respuestas, usuarios y etiquetas definidas en el mísmo método
+
+
+    /**
+     * Método que inicializa el Stack con preguntas, respuestas, usuarios y etiquetas definidas en el mismo método
      */
     public void inicial(){
         User u1 = new User("Meredith","Grey");

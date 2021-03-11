@@ -1,6 +1,8 @@
 package vista;
-/*
-Vista que despliega un formulario para ingresar o registrarse en la plataforma
+/**
+ * clase que genera una ventana con un formulario para registrarse o ingresar con un usuario
+ * @version 10/03/2021
+ * @author Gabriela Fernández
  */
 import javax.swing.*;
 

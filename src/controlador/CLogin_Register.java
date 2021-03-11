@@ -1,7 +1,9 @@
 package controlador;
-/*
-Controlador de la vista "Login_Register"
-*/
+/**
+ * Una clase para comunicar las clases del modelo a la de la vista "Login_Register"
+ * @version  10/03/2021
+ * @author Gabriela Fernández
+ */
 import modelo.*;
 import vista.*;
 
@@ -14,9 +16,11 @@ public class CLogin_Register {
         // muestra como visible la ventana
         vista.setVisible(true);
 
-        // Si se presiona el botón "ingresarButton" se ejecuta stack.login() con la información de textUser y textPass
-        // si el método ejecutado retorna true significa que la operación fue fallida, de lo contrario se
-        // redirige a la vista "Principal" son el stack actualizado con el usuario activo ingresado
+        /**
+         * Si se presiona el botón "ingresarButton" se ejecuta stack.login() con la información de textUser y textPass
+         * si el método ejecutado retorna true significa que la operación fue fallida, de lo contrario se
+         * redirige a la vista "Principal" son el stack actualizado con el usuario activo ingresado
+         */
         vista.ingresarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,8 +39,10 @@ public class CLogin_Register {
             }
         });
 
-        // Si se presiona el botón "registrarseButton" y los campos de texto están rellenos, y el nombre de usuario
-        // no ha sido ocupado, permite el registro de un nuevo usuario
+        /**
+         * Si se presiona el botón "registrarseButton" y los campos de texto están rellenos, y el nombre de usuario
+         * no ha sido ocupado, permite el registro de un nuevo usuario
+         */
         vista.registrarseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,7 +61,9 @@ public class CLogin_Register {
             }
         });
 
-        // Si se presiona el botón "volver", se redirige a la vista "Principal" sin iniciar o registrar sesión
+        /**
+         * Si se presiona el botón "volver", se redirige a la vista "Principal" sin iniciar o registrar sesión
+         */
         vista.volver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

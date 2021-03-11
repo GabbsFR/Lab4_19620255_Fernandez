@@ -1,6 +1,8 @@
 package controlador;
-/*
-Controlador de la vista "EtiquetaGUI"
+/**
+ * Una clase para comunicar las clases del modelo a la de la vista "EtiquetaGUI"
+ * @version  10/03/2021
+ * @author Gabriela Fernández
  */
 import vista.*;
 import modelo.*;
@@ -14,7 +16,9 @@ public class CEtiqueta {
         // Se muestra la ventana
         vista.setVisible(true);
 
-        // Si se presiona el botón "crearButton" y se rellenaron los espacion de texto, se permite crear una etiqueta
+        /**
+         * Si se presiona el botón "crearButton" y se rellenaron los espacion de texto, se permite crear una etiqueta
+         */
         vista.crearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -33,7 +37,9 @@ public class CEtiqueta {
             }
         });
 
-        // Si se presiona el botón "volverButton" se redirige a la vista "Principal"
+        /**
+         *  Si se presiona el botón "volverButton" se redirige a la vista "Principal"
+         */
         vista.volverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
