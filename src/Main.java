@@ -1,7 +1,7 @@
-package controlador;
 /*
 Controlador principal, inicia el programa
 */
+import controlador.*;
 import modelo.*;
 import vista.*;
 
