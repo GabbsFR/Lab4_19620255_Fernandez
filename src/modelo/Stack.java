@@ -197,6 +197,7 @@ public class Stack {
      */
     public void accept(Pregunta pregunta,Respuesta respuesta){
         pregunta.setEstado("cerrada");
+        respuesta.setEstado("aceptada");
         respuesta.getAutor().setReputacion(respuesta.getAutor().getReputacion() + pregunta.getRecompensa() + 15);
         pregunta.getAutor().setReputacion(pregunta.getAutor().getReputacion() + 2);
     }

@@ -13,6 +13,8 @@ public class Respuesta {
     private User autor;
     private String contenido;
     private Date fecha;
+    private String estado;
+
     private int vf;
     private int vc;
 
@@ -22,6 +24,7 @@ public class Respuesta {
         this.autor = autor;
         this.contenido = contenido;
         this.fecha = fecha;
+        this.estado = "";
         this.vf = 0;
         this.vc = 0;
     }
@@ -53,7 +56,12 @@ public class Respuesta {
     public void setVc(int vc) {
         this.vc = vc;
     }
-
+    public String getEstado() {
+        return estado;
+    }
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     /**
      * Metodo que toma la información de la respuesta y genera un String con la información organizada
      * @return String con información de la respuesta
@@ -62,6 +70,7 @@ public class Respuesta {
         String r = this.id + "\n" + this.getContenido() +
                 "\n    Votos a favor: "+ this.vf +
                 "\n    Votos en contra: "+ this.vc +
+                "\n    Estado: "+ this.estado+
                 "\n    Autor: " + this.autor.getName() + "\n    fecha: " + this.fecha;
         return r;
     }

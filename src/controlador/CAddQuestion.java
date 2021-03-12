@@ -17,7 +17,7 @@ public class CAddQuestion{
     public Etiqueta[] aux;
 
     public CAddQuestion(Stack stack, AddQuestion vista) {
-
+        etSel = new Etiqueta[0];
         // Se rellena el componente JList con la información de las etiquetas que están en el stack
         DefaultListModel<String> etiquetas = new DefaultListModel<>();
         for (Etiqueta etiqueta : stack.getEtiquetas()) {

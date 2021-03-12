@@ -115,7 +115,11 @@ public class Pregunta {
                 "\n    Estado: " + this.estado +
                 "\n    Votos a favor: " + this.vf +
                 "\n    Votos en contra: " + this.vc +
-                "\n    Recompensa: " + this.recompensa;
+                "\n    Recompensa: " + this.recompensa +
+                "\n    Etiquetas: ";
+        for (Etiqueta etiqueta : this.etiquetas) {
+            p = p + etiqueta.getNombre() + "; ";
+        }
         return  p;
     }
 }
